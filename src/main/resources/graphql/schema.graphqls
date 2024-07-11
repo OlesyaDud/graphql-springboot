@@ -1,0 +1,133 @@
+type Query {
+    findAllBrands:[Brand]
+    findBrand(id: Int): Brand
+    findModel(id: Int): Model
+    findAllModels: [Model]
+}
+
+type Mutation {
+<<<<<<< HEAD
+    saveBrand(name:String, country:Country): Brand
+    updateBrand(id:Int, name:String, country:Country): Brand
+    deleteBrand(id:Int): Brand
+
+    saveModel(brand_id: Int, name: String): Model
+=======
+    saveBrand(brandDto: BrandDto): Brand
+    updateBrand(id:Int, brandDto: BrandDto): Brand
+    deleteBrand(id:Int): Brand
+
+    saveModel(modelDto: ModelDto): Model
+>>>>>>> 27d3b13 (commit sb)
+    updateModel(id: Int, name:String): Model
+    deleteModel(id: Int): Model
+}
+
+type Brand {
+    id: Int
+    name: String
+    country: Country
+    models: [Model]
+}
+
+
+type Model {
+    id: Int
+    name: String
+}
+enum Country {
+    GER
+    ENG
+    ES
+    JAP
+<<<<<<< HEAD
+=======
+}
+
+input BrandDto {
+    name: String
+    country: Country
+}
+
+input ModelDto {
+    brand_id: Int
+    name: String
+<<<<<<< HEAD
+>>>>>>> 27d3b13 (commit sb)
+}
+=======
+}
+
+
+# query{
+#   findAllBrands{
+#     id,
+#     name,
+#     country
+#   }
+# }
+
+# query{
+#   findAllBrands{
+#     id,
+#     name,
+#     models{
+#       name
+#     }
+#   }
+# }
+
+# mutation{
+#   updateBrand(id: 2, name: "bmw", country: GER){
+#     id
+#     name
+#     country
+#   }
+# }
+
+# mutation{
+#   deleteModel(id: 1){
+#     id
+#   }
+# }
+
+# query{
+#   findAllBrands{
+#     id,
+#     name,
+#     country
+#     models {
+#       id
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   saveModel(brand_id: 1, name: "Clase E"){
+#     id
+#     name
+#   }
+# }
+
+# mutation {
+#   saveModel(modelDto: {
+#     brand_id: 7
+#     name: "Leon"
+#   }){
+#     id
+#     name
+#   }
+# }
+
+# mutation{
+#   saveBrand(brandDto: {
+#     name: "Seat",
+#     country: ES
+#   }){
+#     id
+#     name
+#     country
+#   }
+# }
+>>>>>>> 3beb286 (commit backend)
