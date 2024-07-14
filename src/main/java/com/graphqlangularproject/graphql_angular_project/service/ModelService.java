@@ -12,6 +12,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -39,6 +40,8 @@ public class ModelService {
 
 
     public Model updateModel(int id, String name){
+        Optional<Model> modelOptional = modelRepository.findByName(name);
+        if(modelOptional.isPresent() && modelOptional.get().getId() != id) throw new RuntimeException("model name is already in use");
         Model  model = modelRepository.findById(id).orElseThrow(() -> new RuntimeException("id not found"));
         model.setName(name);
 

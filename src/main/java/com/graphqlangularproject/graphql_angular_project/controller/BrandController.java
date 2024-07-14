@@ -1,9 +1,6 @@
 package com.graphqlangularproject.graphql_angular_project.controller;
 
-<<<<<<< HEAD
-=======
 import com.graphqlangularproject.graphql_angular_project.dto.BrandDto;
->>>>>>> 27d3b13 (commit sb)
 import com.graphqlangularproject.graphql_angular_project.entity.Brand;
 import com.graphqlangularproject.graphql_angular_project.enums.Country;
 import com.graphqlangularproject.graphql_angular_project.repository.ModelRepository;
@@ -12,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -52,8 +52,6 @@ public class BrandController {
 //#   }
 //# }
 
-<<<<<<< HEAD
-=======
 
 //    query{
 //        findAllBrands{
@@ -65,20 +63,47 @@ public class BrandController {
 //        }
 //    }
 
->>>>>>> 27d3b13 (commit sb)
+    @SubscriptionMapping
+    public Flux<Brand> findAllBrandsFlux(){
+        return brandService.findAllBrandsFlux();
+    }
+//    subscription{
+//        findAllBrandsFlux{
+//            id
+//                    name
+//        }
+//    }
+
+//    subscription{
+//        findAllBrandsFlux{
+//            name
+//            models{
+//                id
+//                        name
+//            }
+//        }
+//    }
+
+
     @QueryMapping
     public Brand findBrand(@Argument int id){
         return brandService.findBrand(id);
     }
 
+    @SubscriptionMapping
+    public Mono<Brand> findBrandMono(@Argument int id){
+        return brandService.findBrandMono(id);
+    }
+
+//    subscription{
+//        findBrandMono(id: 1){
+//            name
+//        }
+//    }
+
     @MutationMapping
-<<<<<<< HEAD
-    public Brand saveBrand(@Argument String name, @Argument Country country){
-        return brandService.saveBrand(name, country);
-=======
     public Brand saveBrand(@Argument BrandDto brandDto){
         return brandService.saveBrand(brandDto);
->>>>>>> 27d3b13 (commit sb)
     }
 //    mutation{
 //        saveBrand(name: "Nissan", country: JAP){
@@ -88,11 +113,6 @@ public class BrandController {
 //        }
 //    }
 
-<<<<<<< HEAD
-    @MutationMapping
-    public Brand updateBrand(@Argument int id, @Argument String name, @Argument Country country){
-        return brandService.updateBrand(id, name, country);
-=======
 
 //    mutation{
 //        saveBrand(brandDto: {
@@ -108,7 +128,6 @@ public class BrandController {
     @MutationMapping
     public Brand updateBrand(@Argument int id, @Argument BrandDto brandDto){
         return brandService.updateBrand(id, brandDto);
->>>>>>> 27d3b13 (commit sb)
     }
 //    mutation{
 //        updateBrand(id: 2, name: "bmw", country: GER){
@@ -128,3 +147,22 @@ public class BrandController {
 //        }
 //    }
 }
+
+
+//Exception handling
+//    query{
+//        findBrand(id: 50){
+//            name
+//        }
+//    }
+//
+//    {
+//            "errors": [
+//            {
+//            "message": "id does not exist"
+//            }
+//            ],
+//            "data": {
+//            "findBrand": null
+//            }
+//            }

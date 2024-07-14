@@ -1,3 +1,5 @@
+directive @NotBlank(message: String = "name is mandatory") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
 type Query {
     findAllBrands:[Brand]
     findBrand(id: Int): Brand
@@ -6,21 +8,18 @@ type Query {
 }
 
 type Mutation {
-<<<<<<< HEAD
-    saveBrand(name:String, country:Country): Brand
-    updateBrand(id:Int, name:String, country:Country): Brand
-    deleteBrand(id:Int): Brand
-
-    saveModel(brand_id: Int, name: String): Model
-=======
     saveBrand(brandDto: BrandDto): Brand
     updateBrand(id:Int, brandDto: BrandDto): Brand
     deleteBrand(id:Int): Brand
 
     saveModel(modelDto: ModelDto): Model
->>>>>>> 27d3b13 (commit sb)
-    updateModel(id: Int, name:String): Model
+    updateModel(id: Int, name:String @NotBlank): Model
     deleteModel(id: Int): Model
+}
+
+type Subscription {
+    findAllBrandsFlux: Brand
+    findBrandMono(id: Int): Brand
 }
 
 type Brand {
@@ -40,23 +39,18 @@ enum Country {
     ENG
     ES
     JAP
-<<<<<<< HEAD
-=======
 }
 
 input BrandDto {
-    name: String
+    name: String @NotBlank
     country: Country
 }
 
 input ModelDto {
     brand_id: Int
-    name: String
-<<<<<<< HEAD
->>>>>>> 27d3b13 (commit sb)
+    name: String @NotBlank
 }
-=======
-}
+
 
 
 # query{
@@ -130,4 +124,3 @@ input ModelDto {
 #     country
 #   }
 # }
->>>>>>> 3beb286 (commit backend)

@@ -1,9 +1,6 @@
 package com.graphqlangularproject.graphql_angular_project.controller;
 
-<<<<<<< HEAD
-=======
 import com.graphqlangularproject.graphql_angular_project.dto.ModelDto;
->>>>>>> 27d3b13 (commit sb)
 import com.graphqlangularproject.graphql_angular_project.entity.Brand;
 import com.graphqlangularproject.graphql_angular_project.entity.Model;
 import com.graphqlangularproject.graphql_angular_project.enums.Country;
@@ -42,13 +39,8 @@ public class ModelController {
     }
 
     @MutationMapping
-<<<<<<< HEAD
-    public Model saveModel(@Argument int brand_id, @Argument String name){
-        return brandService.saveModel(brand_id, name);
-=======
     public Model saveModel(@Argument ModelDto modelDto){
         return brandService.saveModel(modelDto);
->>>>>>> 27d3b13 (commit sb)
     }
 //    mutation {
 //#   saveModel(brand_id: 1, name: "Clase E"){
@@ -57,8 +49,6 @@ public class ModelController {
 //#   }
 //# }
 
-<<<<<<< HEAD
-=======
 //    mutation {
 //        saveModel(modelDto: {
 //            brand_id: 7
@@ -68,7 +58,6 @@ public class ModelController {
 //                    name
 //        }
 //    }
->>>>>>> 27d3b13 (commit sb)
 
     @MutationMapping
     public Model updateModel(@Argument int id, @Argument String name){
