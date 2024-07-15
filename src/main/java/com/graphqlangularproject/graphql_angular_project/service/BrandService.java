@@ -89,6 +89,7 @@ public class BrandService {
 
     public Brand deleteBrand(int id){
         Brand brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("id not found"));
+        brand.getModels().forEach(model -> modelRepository.delete(model));
         brandRepository.delete(brand);
         return brand;
     }

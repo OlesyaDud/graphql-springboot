@@ -28,6 +28,13 @@ public class ModelService {
         return modelRepository.findAll();
     }
 
+    public List<Model> findModelsByBrandId(int brand_id){
+        Optional<Brand> brand = brandRepository.findById(brand_id);
+        if(!brand.isPresent()) throw new RuntimeException("Brand not found");
+
+        return modelRepository.findModelsByBrandId(brand_id);
+    }
+
     public Model findModel(int id){
         return modelRepository.findById(id).orElseThrow(() -> new RuntimeException("id does not exist"));
     }

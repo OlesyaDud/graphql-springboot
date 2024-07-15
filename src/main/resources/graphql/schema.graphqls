@@ -5,6 +5,7 @@ type Query {
     findBrand(id: Int): Brand
     findModel(id: Int): Model
     findAllModels: [Model]
+    findModelsByBrandId(brand_id: Int): [Model]
 }
 
 type Mutation {
@@ -33,6 +34,7 @@ type Brand {
 type Model {
     id: Int
     name: String
+    brand: Brand
 }
 enum Country {
     GER

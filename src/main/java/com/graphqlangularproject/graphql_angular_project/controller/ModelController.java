@@ -32,6 +32,17 @@ public class ModelController {
         return modelService.findAllModels();
     }
 
+    @QueryMapping
+    public List<Model> findModelsByBrandId(@Argument int brand_id){
+        return modelService.findModelsByBrandId(brand_id);
+    }
+//    query{
+//        findModelsByBrandId(brand_id: 1){
+//            name,
+//        }
+//    }
+
+
 
     @QueryMapping
     public Model findModel(@Argument int id){
